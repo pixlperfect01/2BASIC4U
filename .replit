@@ -1,0 +1,10 @@
+#compile = ["gcc", "main.c", "-o", "dscript"]
+#run = "./dscript"
+run = "node index.js main.k"
+hidden = [".ccls-cache", "package-lock.json", "package.json"]
+
+#[languages.c.languageServer]
+#start = "ccls"
+
+[debugger]
+support = false
