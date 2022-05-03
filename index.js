@@ -1,6 +1,7 @@
 process.argv.splice(1, 1);
 var argv = process.argv;
 const fs = require("fs");
+const sm = require("./string-math");
 
 let script = fs.readFileSync(argv[1], 'utf-8');
 
@@ -23,14 +24,33 @@ lines.forEach((e)=>{
 console.log(t);
 lines = t;
 
-var outFile = "";
+var outFileData = "";
 
 lines.forEach((e, i)=>{
-    params = e.split(/[.\/ \*+,-]/);
+    params = e.split(/[. ,]/);
     params = params.filter((e1)=>{
         return e1 != "";
     });
     command = params.shift();
     args = params;
     console.log(command, args);
+    tree.push({
+        cmd: command,
+        args: args
+    });
 });
+
+var operators = ["+","-","*","/"];
+tree1 = [];
+tree.forEach((e) => {
+    var a = e.args;
+    tree1.push(e);
+    a.forEach((e1, i1) => {
+        if(operators.some(v => e1.includes(v))){
+            tree1[tree1.length-1].args[i1] = sm(e1)+"";
+        }
+    });
+});
+
+tree = tree1;
+console.log(tree);
