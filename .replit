@@ -1,6 +1,6 @@
 #compile = ["gcc", "main.c", "-o", "dscript"]
 #run = "./dscript"
-run = "node index.js main.k"
+run = "node index.js main.b4u"
 hidden = [".ccls-cache", "package-lock.json", "package.json"]
 
 #[languages.c.languageServer]
